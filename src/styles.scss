@@ -1,0 +1,74 @@
+@import '../src/assets/scss/bootstrap';
+@import '../src/assets/scss/base';
+@import '../src/assets/scss/helpers';
+@import '../src/assets/scss/normalize';
+@import '../src/assets/scss/forms';
+@import '../src/assets/scss/transitions';
+
+
+//Common Styles
+@import '../src/assets/scss/hero';
+@import '../src/assets/scss/listing';
+@import '../src/assets/scss/overview';
+@import '../src/assets/scss/videos';
+@import '../src/assets/scss/image';
+
+.paybtn{
+    text-align: center;
+    background: #212121;
+    padding-bottom: 20px;
+    .PaymentButton-securedBy{
+        display: none;
+    }
+    svg{
+        display: none;
+    }
+    .PaymentButton {
+        background: #dc4666 !important;
+    }
+    .PaymentButton-contents {
+        padding: 10px 0px 10px 0px !important;
+        .PaymentButton-text{
+            color: #fff;
+        }
+    }
+}
+.testbutton {
+    font-family: arial;
+    color: #F7F3E9 !important;
+    font-size: 14px;
+    text-shadow: 1px 1px 0px #7CACDE;
+    box-shadow: 1px 1px 1px #BEE2F9;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 0px solid #3866A3;
+    background: #DC4666;
+    background: linear-gradient(to top, #DC4666, #DC4666);
+  }
+  .testbutton:hover {
+    color: #14396A !important;
+    background: #468CCF;
+    background: linear-gradient(to top, #468CCF, #63B8EE);
+  }
+  
+  .buttonClass {
+    font-size:15px;
+    font-family:Arial;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:#fff;
+    border-color:#ffffff;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    box-shadow:inset 0px 39px 0px -24px #e67a73;
+    text-shadow:inset 0px 1px 0px #b23e35;
+    background:#e4685d;
+  }
+  
+  .buttonClass:hover {
+    background: #eb675e
+  }
+                
