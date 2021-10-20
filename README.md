@@ -4,15 +4,11 @@ Esse projeto foi feito utilizando [Angular CLI](https://github.com/angular/angul
 
 ## Pré Requisitos :
 
-- Angular CLI version 8.3.9
-- Angular 8.3.9
+- Angular CLI version 8.3.20
+- Angular 8.3.20
 - Angular Material 8.1.4
 - AngularFire 5.2.1
-- Firebase js SDK 7.1.0
-- Rxjs 6.5.2
-- PrimeNg Library 8.0 -> https://www.primefaces.org/primeng/#/
 - API -> https://www.themoviedb.org
-- Firebase -> https://firebase.google.com
 - Docker -> https://www.docker.com/
 
 ## Instalação via Npm :
@@ -37,6 +33,7 @@ docker-compose up --build
 - Colocar um botão de troca de idioma para Pt-Br pois a api consumida esta em inglês
 - Arrumar layout em genres, colocando imagens representando cada um dos generos
 - Colocar um formulario de inscrição em Submit
+- Subir a aplicação no heroku ou firebase (em breve)
 
 ## Referencias:
 
