@@ -4,8 +4,8 @@ Esse projeto foi feito utilizando [Angular CLI](https://github.com/angular/angul
 
 ## Pré Requisitos :
 
-- Angular CLI version 8.3.9
-- Angular 8.3.9
+- Angular CLI version 8.3.20
+- Angular 8.3.20
 - Angular Material 8.1.4
 - AngularFire 5.2.1
 - API -> https://www.themoviedb.org
