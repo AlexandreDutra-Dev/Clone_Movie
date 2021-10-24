@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,10 @@ const routes: Routes = [
     path: 'genres-tv/:id/:name',
     loadChildren: () => import('./components/tv-genre/tv-genre.module').then(m => m.TvGenreModule)
   },
-
+  {
+    path: 'login',
+    component : LoginComponent
+  },
   {
     path: '**',
     redirectTo: ''

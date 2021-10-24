@@ -127,6 +127,14 @@
               "devServerTarget": "moviesExpo:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/moviesExpo",
+            "netlifyToken": "89-vzXuI3I7myOFiKJFRplOJxzWNxGem4IeeFUVbjzI",
+            "siteId": ""
+          }
         }
       }
     }
