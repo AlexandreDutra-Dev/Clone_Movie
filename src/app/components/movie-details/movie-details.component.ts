@@ -75,14 +75,14 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openDialogMovie(video): void {
-    this.video['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + video.key + this.autoplay); 
+    this.video['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + video.key + this.autoplay);
     this.dialog.open(AppMovieDialogComponent, {
       height: '600px',
       width: '900px',
       data: { video: this.video}
     });
   }
-  
+
   getCast(id) {
     this.movieService.getMovieCredits(id).subscribe((res: any) => {
       this.casts = res.cast;
@@ -100,6 +100,6 @@ export class MovieDetailsComponent implements OnInit {
       this.recomendMovies = res.results;
     });
   }
- 
+
 }
 
