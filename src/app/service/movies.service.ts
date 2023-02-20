@@ -54,7 +54,7 @@ export class MoviesService {
 
   getDiscoverMovies(): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}discover/movie?api_key=${this.apiKey}&language=${this.language}&region=${this.region}`
+      `${this.baseUrl}discover/movie?api_key=${this.apiKey}`
     );
   }
 
@@ -66,7 +66,7 @@ export class MoviesService {
 
   getMoviesByGenre(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}genre/${id}/movies?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}genre/${id}/movies?api_key=${this.apiKey}`
     );
   }
 
@@ -78,49 +78,47 @@ export class MoviesService {
 
   getMovieReviews(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}`
     );
   }
 
   getMovieCredits(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}movie/${id}/credits?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}movie/${id}/credits?api_key=${this.apiKey}`
     );
   }
 
   getBackdropsImages(id: string) {
     return this.http.get(
-      `${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}`
     );
   }
 
   getMovieVideos(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}movie/${id}/videos?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}movie/${id}/videos?api_key=${this.apiKey}`
     );
   }
 
   getRecomendMovies(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`
     );
   }
 
   getPersonDetail(id: string): Observable<any> {
-    return this.http.get(
-      `${this.baseUrl}person/${id}?api_key=${this.apiKey}&language=${this.language}`
-    );
+    return this.http.get(`${this.baseUrl}person/${id}?api_key=${this.apiKey}`);
   }
 
   getPersonExternalData(id: string) {
     return this.http.get(
-      `${this.baseUrl}person/${id}/external_ids?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}person/${id}/external_ids?api_key=${this.apiKey}`
     );
   }
 
   getPersonCast(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}person/${id}/movie_credits?api_key=${this.apiKey}&language=${this.language}`
+      `${this.baseUrl}person/${id}/movie_credits?api_key=${this.apiKey}`
     );
   }
 }

@@ -8,8 +8,9 @@
         <div class="col-md-6">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control searchdesign" placeholder="Search for movies..." [(ngModel)]="searchStr"
-                     name="searchStr" (input)="searchSuggestions()" autocomplete="off">
+              <input #searchInput type="text" class="form-control searchdesign" placeholder="Search for movies..." [(ngModel)]="searchStr"
+              (keyup.arrowUp)="onArrowUp()" (keyup.arrowDown)="onArrowDown()" (keypress.enter)="onEnter()"
+              (input)="searchSuggestions()" name="searchStr" autocomplete="off" ngModelOptions="{ updateOn: 'blur' }">
               <span class="input-group-btn">
                 <button class="btn btn-primary btnDesign" type="submit">Go!</button>
               </span>

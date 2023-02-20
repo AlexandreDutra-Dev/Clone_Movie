@@ -73,10 +73,32 @@ export class MoviesComponent implements OnInit {
     this.searchStr = suggestion.title;
     this.searchRes = [suggestion];
     this.showSuggestions = false;
+    this.topRated = [];
   }
 
   showSuggestion() {
     this.showSuggestions = true;
+  }
+
+  onArrowUp() {
+    if (this.selectedIndex > 0) {
+      this.selectedIndex--;
+    }
+  }
+
+  onArrowDown() {
+    if (this.selectedIndex < this.suggestions.length - 1) {
+      this.selectedIndex++;
+    }
+  }
+
+  onEnter() {
+    if (
+      this.selectedIndex >= 0 &&
+      this.selectedIndex < this.suggestions.length
+    ) {
+      this.selectSuggestion(this.suggestions[this.selectedIndex]);
+    }
   }
 
   searchMovies() {

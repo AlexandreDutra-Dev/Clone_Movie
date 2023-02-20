@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MoviesService } from "src/app/service/movies.service";
-import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatDialog } from "@angular/material";
 import { AppMovieDialogComponent } from "../movie-details/app-movie-dialog/app-movie-dialog.component";
@@ -26,8 +26,7 @@ export class MovieDetailsComponent implements OnInit {
     private movieService: MoviesService,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private dialog: MatDialog,
-    private route: Router
+    private dialog: MatDialog
   ) {
     this.responsiveOptions = [
       {
@@ -57,12 +56,6 @@ export class MovieDetailsComponent implements OnInit {
       this.getBackropsImages(this.id);
       this.getRecomendMovie(this.id);
     });
-
-    this.route.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
-      }
-    });
   }
 
   getSingleMoviesDetails(id) {
@@ -81,6 +74,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openDialogMovie(video): void {
+    console.log(this.video);
     this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.baseUrl + video.key + this.autoplay
     );
