@@ -31,12 +31,6 @@ export class MoviesService {
     );
   }
 
-  searchSuggestions(searchStr: string): Observable<any> {
-    return this.http.get(
-      `${this.baseUrl}search/multi?api_key=${this.apiKey}&query=${searchStr}&language=${this.language}&region=${this.region}`
-    );
-  }
-
   getPopular(page: number): Observable<any> {
     // tslint:disable-next-line: max-line-length
     return this.http.get(

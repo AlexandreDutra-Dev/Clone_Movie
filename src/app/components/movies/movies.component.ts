@@ -62,12 +62,6 @@ export class MoviesComponent implements OnInit {
     this.getTopRatedMovies(event.pageIndex + 1);
   }
 
-  onSearchKeyup(event: any) {
-    if (event.target.value.length >= 3) {
-      this.searchMovies();
-    }
-  }
-
   searchSuggestions(): void {
     this.movieService.searchMovies(this.searchStr).subscribe((res) => {
       this.suggestions = res.results;
@@ -77,30 +71,8 @@ export class MoviesComponent implements OnInit {
 
   selectSuggestion(suggestion: any): void {
     this.searchStr = suggestion.title;
+    this.searchRes = [suggestion];
     this.showSuggestions = false;
-  }
-
-  onKeyDown(event): void {
-    if (event.key === "ArrowUp") {
-      this.selectedIndex =
-        this.selectedIndex > 0
-          ? this.selectedIndex - 1
-          : this.suggestions.length - 1;
-    } else if (event.key === "ArrowDown") {
-      this.selectedIndex =
-        this.selectedIndex < this.suggestions.length - 1
-          ? this.selectedIndex + 1
-          : 0;
-    } else if (event.key === "Enter") {
-      event.preventDefault();
-      if (
-        this.selectedIndex >= 0 &&
-        this.selectedIndex < this.suggestions.length
-      ) {
-        this.searchStr = this.suggestions[this.selectedIndex].title;
-      }
-      this.showSuggestions = false;
-    }
   }
 
   showSuggestion() {

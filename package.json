@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "start": "ng serve --open",
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.9",
