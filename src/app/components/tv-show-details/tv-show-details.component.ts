@@ -65,6 +65,8 @@ export class TvShowDetailsComponent implements OnInit {
   getTvDetails(id) {
     this.tvService.getTVShow(id).subscribe((res: any) => {
       this.episode = res;
+      window.scrollTo(0, 0);
+
     });
   }
 

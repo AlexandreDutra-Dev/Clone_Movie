@@ -61,6 +61,7 @@ export class MovieDetailsComponent implements OnInit {
   getSingleMoviesDetails(id) {
     this.movieService.getMovie(id).subscribe((res: any) => {
       this.movie = res;
+      window.scrollTo(0, 0);
     });
   }
 
@@ -74,7 +75,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openDialogMovie(video): void {
-    console.log(this.video);
     this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.baseUrl + video.key + this.autoplay
     );
