@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-md-12">
             <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms">
-                <mat-tab label="Overview">
+                <mat-tab label="Visão Geral">
                     <div class="listing-space info">
                         <div class="left">
                             <div class="poster">
@@ -46,7 +46,7 @@
                         </div>
                         <div class="right">
                             <div class="overview">
-                                <h2 class="title">Storyline</h2>
+                                <h2 class="title">História</h2>
                                 <div>{{ episode?.overview}}</div>
                             </div>
                             <div class="stats">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Photos">
+                <mat-tab label="Fotos">
                     <div class="listing-space backdrop_">
                         <div class="head">
                             <h2 class="title">Backdrops</h2>
@@ -178,7 +178,7 @@
             </mat-tab-group>
             <div class="listing-space mt-20 mb-5">
                 <div class="listing__head">
-                    <h2 class="listing__title">Recommended Movies</h2>
+                    <h2 class="listing__title">Séries recomendadas </h2>
                 </div>
                 <p-carousel [value]="_recomend" [numVisible]="6" [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
                     <ng-template let-recomend pTemplate="item">

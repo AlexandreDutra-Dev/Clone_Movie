@@ -4,12 +4,12 @@
 
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title">Trending Movies</h3>
+        <h3 class="listing__title">Filmes em alta</h3>
         <a [routerLink]="['/movies']" routerLinkActive="router-link-active" class="listing__explore">
-            <strong>Explore All</strong>
+            <strong>Explore todos</strong>
         </a>
     </div>
-    
+
     <app-skeleton *ngIf="loader" ></app-skeleton>
     <p-carousel [value]="nowPlaying" [numVisible]="6" [numScroll]="4" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
@@ -32,9 +32,9 @@
 
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title">Trending TV Shows</h3>
+        <h3 class="listing__title">Séries em Alta</h3>
         <a [routerLink]="['/tv']" routerLinkActive="router-link-active" class="listing__explore">
-            <strong>Explore All</strong>
+            <strong>Explore todas</strong>
         </a>
     </div>
     <app-skeleton *ngIf="loader"></app-skeleton>

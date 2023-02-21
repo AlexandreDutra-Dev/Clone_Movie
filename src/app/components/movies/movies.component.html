@@ -1,18 +1,18 @@
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title" *ngIf="!searchRes">Movies</h3>
+        <h3 class="listing__title" *ngIf="!searchRes">Filmes</h3>
         <h3 class="listing__title" *ngIf="searchRes">Search Movies</h3>
     </div>
-    <form (submit)="searchMovies()">
+    <form>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <div class="input-group">
-              <input #searchInput type="text" class="form-control searchdesign" placeholder="Search for movies..." [(ngModel)]="searchStr"
-              (keyup.arrowUp)="onArrowUp()" (keyup.arrowDown)="onArrowDown()" (keypress.enter)="onEnter()"
+              <input #searchInput type="text" (keydown)="onKeyDown($event)"class="form-control searchdesign" placeholder="Search for movies..." [(ngModel)]="searchStr"
+              (keyup.arrowUp)="onArrowUp()" (keyup.arrowDown)="onArrowDown()" (keyup.enter)="onEnter()"
               (input)="searchSuggestions()" name="searchStr" autocomplete="off" ngModelOptions="{ updateOn: 'blur' }">
               <span class="input-group-btn">
-                <button class="btn btn-primary btnDesign" type="submit">Go!</button>
+                <button class="btn btn-primary btnDesign" (click)="searchMovies()">Go!</button>
               </span>
             </div>
             <div *ngIf="showSuggestions && suggestions.length > 0" class="suggestions">

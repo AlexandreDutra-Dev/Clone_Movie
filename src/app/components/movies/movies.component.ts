@@ -69,11 +69,14 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  selectSuggestion(suggestion: any): void {
+  selectSuggestion(suggestion: any, event?: Event) {
     this.searchStr = suggestion.title;
     this.searchRes = [suggestion];
     this.showSuggestions = false;
     this.topRated = [];
+    if (event) {
+      event.stopPropagation();
+    }
   }
 
   showSuggestion() {
@@ -92,12 +95,42 @@ export class MoviesComponent implements OnInit {
     }
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === "ArrowUp") {
+      this.selectedIndex =
+        this.selectedIndex > 0
+          ? this.selectedIndex - 1
+          : this.suggestions.length - 1;
+      event.preventDefault();
+    } else if (event.key === "ArrowDown") {
+      this.selectedIndex =
+        this.selectedIndex < this.suggestions.length - 1
+          ? this.selectedIndex + 1
+          : 0;
+      event.preventDefault();
+    } else if (event.key === "Enter") {
+      if (
+        this.selectedIndex >= 0 &&
+        this.selectedIndex < this.suggestions.length
+      ) {
+        this.selectSuggestion(this.suggestions[this.selectedIndex]);
+        event.preventDefault();
+      }
+    }
+  }
+
   onEnter() {
     if (
       this.selectedIndex >= 0 &&
       this.selectedIndex < this.suggestions.length
     ) {
-      this.selectSuggestion(this.suggestions[this.selectedIndex]);
+      const suggestion = this.suggestions[this.selectedIndex];
+      this.searchStr = suggestion.title;
+      this.searchRes = [suggestion];
+      this.showSuggestions = false;
+      this.topRated = [];
+    } else {
+      this.searchMovies();
     }
   }
 
