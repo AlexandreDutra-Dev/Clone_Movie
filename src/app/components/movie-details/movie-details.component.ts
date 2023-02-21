@@ -75,6 +75,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openDialogMovie(video): void {
+    console.log("Conteúdo do objeto video:", video);
     this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.baseUrl + video.key + this.autoplay
     );

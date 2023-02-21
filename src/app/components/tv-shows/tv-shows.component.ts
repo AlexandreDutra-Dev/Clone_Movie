@@ -16,9 +16,6 @@ export class TvShowsComponent implements OnInit {
   total_results: any;
   searchRes: any;
   searchStr: string;
-  showSuggestions = false;
-  suggestions = [];
-  selectedIndex = -1;
 
   constructor(private tvService: TvService) {
     this.responsiveOptions = [
@@ -61,23 +58,6 @@ export class TvShowsComponent implements OnInit {
   changePage(event) {
     this.TopRatedTVShows(event.pageIndex + 1);
     this.loader = false;
-  }
-
-  searchSuggestions() {
-    if (this.searchStr.length >= 3) {
-      this.tvService.searchtv(this.searchStr).subscribe((res) => {
-        this.suggestions = res.results;
-        this.showSuggestions = true;
-      });
-    } else {
-      this.showSuggestions = false;
-    }
-  }
-
-  selectSuggestion(suggestion) {
-    this.searchStr = suggestion.title;
-    this.searchRes = [suggestion];
-    this.showSuggestions = false;
   }
 
   searchMovies() {
