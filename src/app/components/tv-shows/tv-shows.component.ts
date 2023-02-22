@@ -63,6 +63,8 @@ export class TvShowsComponent implements OnInit {
   searchMovies() {
     this.tvService.searchtv(this.searchStr).subscribe((res) => {
       this.searchRes = res.results;
+      //deixar somente os resultados da busca e remover todos os outros
+      this.topRatedTv = [];
     });
   }
 }
