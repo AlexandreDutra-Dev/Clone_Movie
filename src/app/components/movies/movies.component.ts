@@ -43,7 +43,7 @@ export class MoviesComponent implements OnInit {
     this.getTopRatedMovies(1);
   }
 
-  getTopRatedMovies(page: number) {
+  getTopRatedMovies(page: number): void {
     this.movieService
       .getTopRatedMovies(page)
       .pipe(delay(2000))
@@ -57,7 +57,7 @@ export class MoviesComponent implements OnInit {
       );
   }
 
-  changePage(event) {
+  changePage(event): void {
     this.loader = true;
     this.getTopRatedMovies(event.pageIndex + 1);
   }
@@ -69,83 +69,76 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  selectSuggestion(suggestion: any, event?: Event) {
+  selectSuggestion(suggestion: any, event?: Event): void {
     this.searchStr = suggestion.title;
     this.searchRes = [suggestion];
     this.showSuggestions = false;
     this.topRated = [];
+
     if (event) {
       event.stopPropagation();
     }
   }
 
-  showSuggestion() {
+  showSuggestion(): void {
     this.showSuggestions = true;
   }
 
-  onArrowUp() {
-    if (this.selectedIndex > 0) {
-      this.selectedIndex--;
-    }
+  onArrowUp(): void {
+    this.selectedIndex =
+      this.selectedIndex > 0
+        ? this.selectedIndex - 1
+        : this.suggestions.length - 1;
+    this.searchStr = this.suggestions[this.selectedIndex].title;
   }
 
-  onArrowDown() {
-    if (this.selectedIndex < this.suggestions.length - 1) {
-      this.selectedIndex++;
-    }
+  onArrowDown(): void {
+    this.selectedIndex =
+      this.selectedIndex < this.suggestions.length - 1
+        ? this.selectedIndex + 1
+        : 0;
+    this.searchStr = this.suggestions[this.selectedIndex].title;
   }
 
-  onKeyDown(event: KeyboardEvent) {
+  onKeyDown(event: KeyboardEvent): void {
     if (event.key === "ArrowUp") {
-      this.selectedIndex =
-        this.selectedIndex > 0
-          ? this.selectedIndex - 1
-          : this.suggestions.length - 1;
+      this.onArrowUp();
       event.preventDefault();
     } else if (event.key === "ArrowDown") {
-      this.selectedIndex =
-        this.selectedIndex < this.suggestions.length - 1
-          ? this.selectedIndex + 1
-          : 0;
+      this.onArrowDown();
       event.preventDefault();
-    } else if (event.key === "Enter") {
-      if (
-        this.selectedIndex >= 0 &&
-        this.selectedIndex < this.suggestions.length
-      ) {
-        this.selectSuggestion(this.suggestions[this.selectedIndex]);
-        event.preventDefault();
-      }
+    } else if (
+      event.key === "Enter" &&
+      this.selectedIndex >= 0 &&
+      this.selectedIndex < this.suggestions.length
+    ) {
+      this.selectSuggestion(this.suggestions[this.selectedIndex]);
+      event.preventDefault();
     }
   }
 
-  onEnter() {
+  onEnter(): void {
     if (
       this.selectedIndex >= 0 &&
       this.selectedIndex < this.suggestions.length
     ) {
-      const suggestion = this.suggestions[this.selectedIndex];
-      this.searchStr = suggestion.title;
-      this.searchRes = [suggestion];
-      this.showSuggestions = false;
-      this.topRated = [];
+      this.selectSuggestion(this.suggestions[this.selectedIndex]);
     } else {
       this.searchMovies();
     }
   }
 
-  searchMovies() {
+  searchMovies(): void {
     this.showSuggestions = false;
     this.selectedIndex = -1;
     this.suggestions = [];
 
     this.movieService.searchMovies(this.searchStr).subscribe((res) => {
       this.loader = false;
-      this.searchRes = res["results"];
-      this.totalResults = res["total_results"];
-      this.topRated = []; // Limpa a lista de filmes carregados anteriormente
+      this.searchRes = res.results;
+      this.totalResults = res.total_results;
+      this.topRated = [];
 
-      // se o campo de pesquisa estiver vazio, carrega a lista de filmes novamente
       if (this.searchStr === "") {
         this.loader = true;
         this.getTopRatedMovies(1);

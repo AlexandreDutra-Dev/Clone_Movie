@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatDialog } from "@angular/material";
 import { AppMovieDialogComponent } from "../movie-details/app-movie-dialog/app-movie-dialog.component";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-movie-details",
@@ -26,7 +27,8 @@ export class MovieDetailsComponent implements OnInit {
     private movieService: MoviesService,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private http: HttpClient
   ) {
     this.responsiveOptions = [
       {
@@ -74,16 +76,63 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  openDialogMovie(video): void {
-    console.log("Conteúdo do objeto video:", video);
-    this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.baseUrl + video.key + this.autoplay
-    );
-    this.dialog.open(AppMovieDialogComponent, {
-      height: "600px",
-      width: "900px",
-      data: { video: this.video },
+  openDialogMovie(movie): void {
+    let foundVideo = false;
+
+    //pegar o nome Animação dentro do array de generos
+    this.movie.genres.forEach((genre) => {
+      if (genre.id === 16) {
+        // pegar o movie.title e concatenar com o nome do genero
+        this.searchOnYoutube(
+          this.movie.title + " " + "official trailer dublado"
+        );
+        foundVideo = true;
+      }
     });
+
+    if (!foundVideo) {
+      console.log(this.movie.genres);
+      try {
+        this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.baseUrl + movie.key + this.autoplay
+        );
+        this.dialog.open(AppMovieDialogComponent, {
+          height: "600px",
+          width: "900px",
+          data: { video: this.video },
+        });
+      } catch (error) {
+        console.log(error.message);
+        this.searchOnYoutube(
+          this.movie.title + " " + "official trailer dublado"
+        );
+      }
+    }
+  }
+
+  searchOnYoutube(searchTerm: string): void {
+    console.log(searchTerm);
+    const API_KEY = "AIzaSyAEO4tW03FnmcdRdrbCIA6jqrh6QU8-Ctg";
+    const apiUrl = `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${API_KEY}&part=snippet&type=video&maxResults=1`;
+    this.http.get(apiUrl).subscribe(
+      (response: any) => {
+        const videoId = response.items[0].id.videoId;
+        this.video = response.items[0];
+        this.video["url"] = this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.baseUrl + videoId + this.autoplay
+        );
+        this.dialog.open(AppMovieDialogComponent, {
+          height: "600px",
+          width: "900px",
+          data: { video: this.video },
+        });
+      },
+      (error) => {
+        alert(
+          "Não foi possível encontrar um vídeo no Youtube para esta pesquisa."
+        );
+      }
+    );
   }
 
   getCast(id) {
